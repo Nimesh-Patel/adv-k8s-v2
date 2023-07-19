@@ -28,5 +28,15 @@ spec:
           containerPort: {{ .Values.deployment.ports.containerPort }}
         env:
           {{- include "roar-all.environment-values" . | indent 10 }}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]  
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 999
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
        
 

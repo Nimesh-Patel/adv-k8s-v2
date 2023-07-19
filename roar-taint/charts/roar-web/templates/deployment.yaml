@@ -38,4 +38,8 @@ spec:
         ports:
         - name: {{ .Values.deployment.ports.name }}
           containerPort: {{ .Values.deployment.ports.containerPort }}
+      tolerations:
+      - key: "roar"
+        operator: "Exists"
+        effect: "NoSchedule"
        
